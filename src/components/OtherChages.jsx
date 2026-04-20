@@ -2360,7 +2360,7 @@ const OtherCharges = ({
             </div>
           </div>
 
-          <div className="overflow-x-auto max-h-64 mb-4 border rounded-lg">
+          <div className="overflow-x-auto max-h-64 mb-4 border rounded-lg" style={{ paddingRight: 12, scrollbarGutter: 'stable' }}>
             <table className="w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -2465,7 +2465,7 @@ const OtherCharges = ({
             </div>
           </div>
 
-          <div className="overflow-x-auto max-h-64 mb-4 border rounded-lg">
+          <div className="overflow-x-auto max-h-64 mb-4 border rounded-lg" style={{ paddingRight: 12, scrollbarGutter: 'stable' }}>
             <table className="w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -2626,7 +2626,7 @@ const OtherCharges = ({
             </div>
           </div>
 
-          <div className="overflow-x-auto max-h-64 mb-4 border rounded-lg">
+          <div className="overflow-x-auto max-h-64 mb-4 border rounded-lg" style={{ paddingRight: 12, scrollbarGutter: 'stable' }}>
             <table className="w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
