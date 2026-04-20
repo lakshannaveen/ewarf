@@ -1927,6 +1927,22 @@ const OtherCharges = ({
         }
 
         if (result) {
+          // The API may return a JSON string like {StatusCode:200, Result: "Data already exists", ResultSet: null}
+          // or a plain string. Detect duplicate-data responses and show an error instead of success.
+          let parsedResult = null;
+          try {
+            parsedResult = JSON.parse(result);
+          } catch (e) {
+            parsedResult = null;
+          }
+
+          const apiMessage = (parsedResult && (parsedResult.Result || parsedResult.Message)) || (typeof result === 'string' ? result : '');
+
+          if (apiMessage && apiMessage.toString().toLowerCase().includes('data already')) {
+            showErrorToast('Error', apiMessage.toString());
+            return false;
+          }
+
           showSuccessToast(
             "Success",
             isAddingNew ? "Third Party charge added successfully!" : "Third Party charge updated successfully!"
