@@ -153,14 +153,21 @@ const OtherCharges = ({
     const loadCompanies = async () => {
       try {
         setIsLoadingCompanies(true);
-        const response = await fetch(`https://esystems.cdl.lk/backend-test/ewharf/User/partyCompanydetails?year=${year || "2021"}&voucherno=${voucherno || "4662"}&InvType=T`);
+        // Use provided API endpoint that returns company list
+        const response = await fetch("https://esystems.cdl.lk/backend-test/ewharf/User/Companydetails");
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Loaded companies from API:", data);
-          
+          console.log("Loaded companies from Companydetails API:", data);
+
+          // Data shape: { StatusCode: 200, Result: null, ResultSet: [ { Com_ID, Com_Name }, ... ] }
           if (data && data.ResultSet && Array.isArray(data.ResultSet)) {
-            setCompanyList(data.ResultSet);
+            // normalize to expected keys if necessary
+            const normalized = data.ResultSet.map((c) => ({
+              Com_ID: c.Com_ID ?? c.ComId ?? c.id ?? c.idcompany ?? "",
+              Com_Name: c.Com_Name ?? c.ComName ?? c.name ?? c.ComName
+            }));
+            setCompanyList(normalized);
           } else {
             console.warn("Unexpected API response format:", data);
             setCompanyList([]);
