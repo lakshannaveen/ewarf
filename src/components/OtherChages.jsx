@@ -915,9 +915,9 @@ const OtherCharges = ({
       invno: row.invoice_no || "",
       invdatetxt: row.invoice_date || new Date().toISOString().split('T')[0],
       CompanyCode: companyCodeFromStorage || row.thirdPartyDetails?.company || "",
-      SubcompanyCode: row.thirdPartyDetails?.company || "",
+      SubcompanyCode: null,
       SuplierCode: row.thirdPartyDetails?.supplierCode || "M1682",
-      InvType: "F",
+      InvType: "O",
       InvDate: row.invoice_date || new Date().toISOString().split('T')[0]
     };
 
